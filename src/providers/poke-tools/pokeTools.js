@@ -34,7 +34,7 @@ export const getPokemon = (number = null) => {
 */
 export const getRandomPokemon = (count = 1, allowDuplicates = false) => {
     if(count > 100) count = 100
-    const max = getPokemon().length
+    const max = getPokemon().length //721
     const pokemon = []
     const rolls = []
     for(let i = 0; i < count; i++){
@@ -45,9 +45,9 @@ export const getRandomPokemon = (count = 1, allowDuplicates = false) => {
         if(allowDuplicates){
             singlePokemon = getPokemon(Math.floor((Math.random() * max) + 1))[0]
         } else {
-            let roll = Math.floor((Math.random() * max) + 1)
+            let roll = Math.floor((Math.random() * max) + 1) //random # between 1 & 721
             while(rolls.indexOf(roll) > -1){
-                roll = Math.floor((Math.random() * max) + 1)
+                roll = Math.floor((Math.random() * max) + 1) //random # between 1 & 721
             }
             rolls.push(roll)
             singlePokemon = getPokemon(roll)[0]
