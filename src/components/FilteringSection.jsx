@@ -6,21 +6,22 @@ import {
     Card
 } from 'antd' //documentation found at https://ant.design/components/overview/
 import InfiniteScroll from 'react-infinite-scroll-component'
-import {setState} from 'react';
+import {useState} from 'react';
+import {getPokemon} from '../providers/poke-tools/pokeTools'
 
 export const FilteringSection = () => {
+    //State vars
+    const [selectedType, setSelectedType] = useState(null)
     
-    
-    const listItems = [{name: "Item 1", number: 1}, {name: "Item 2", number: 2}, {name: "Item 3", number: 3}]
+    const listItems = getPokemon().filter(p => p.type1 === selectedType || !selectedType);
     const pokeTypes = [null, 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark','Dragon','Steel','Fairy']
     const typesOptions = [];
     pokeTypes.forEach((type)=>{
         typesOptions.push({value: type, label: type})
     })
     const filterOneHandler = (event) => {
-        
-    }
-    
+        setSelectedType(event)
+    }    
 
     return (
         <Row gutter={[0, 32]}>
