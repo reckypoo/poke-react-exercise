@@ -6,18 +6,28 @@ import {
     Card
 } from 'antd' //documentation found at https://ant.design/components/overview/
 import InfiniteScroll from 'react-infinite-scroll-component'
+import {setState} from 'react';
 
 export const FilteringSection = () => {
     
+    
     const listItems = [{name: "Item 1", number: 1}, {name: "Item 2", number: 2}, {name: "Item 3", number: 3}]
-    const selectOptions = [{value: "Option 1", label: "Option 1"},{value: "Option 2", label: "Option 2"},{value: "Option 3", label: "Option 3"}]
+    const pokeTypes = [null, 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark','Dragon','Steel','Fairy']
+    const typesOptions = [];
+    pokeTypes.forEach((type)=>{
+        typesOptions.push({value: type, label: type})
+    })
+    const filterOneHandler = (event) => {
+        
+    }
+    
 
     return (
         <Row gutter={[0, 32]}>
 
             {/* Filter by Type */}
             <Col xs={24} xl={12} xxl={8}  style={{paddingLeft: '48px', paddingRight: '48px'}}>
-                <Card title="Filter Pokémon by Type 1" extra={<Select options={selectOptions} placeholder="Select Type 1" />}>
+                <Card title="Filter Pokémon by Type 1" extra={<Select onChange={filterOneHandler} options={typesOptions} placeholder="Select Type 1" />}>
                     <div
                         id="scrollableDiv"
                         style={{
