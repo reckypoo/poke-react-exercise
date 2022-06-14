@@ -6,6 +6,8 @@ import {
   Divider
 } from 'antd'
 import { FilteringSection } from '../../components/FilteringSection'
+import { ComparativeSection } from '../../components/ComparativeSection'
+import { ResetSection } from '../../components/ResetSection'
 
 export const App = () => {
   return (
