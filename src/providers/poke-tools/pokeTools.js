@@ -16,43 +16,43 @@
  * @property {number} generation - The generation the pokémon first appeared in
  * @property {boolean} legendary - Whether the pokémon is legendary or not
  */
-import pokedex from './pokedex.json'
+ import pokedex from './pokedex.json'
 
-/**
-* Fetches either a complete pokédex or a pokémon given the pokémon's pokédex id number.
-* @param {number|null=} [number=null] - The pokémons pokédex number
-*/
-export const getPokemon = (number = null) => {
-    if(!number) return pokedex
-    return pokedex.filter(pokemon => pokemon.number === number)
-}
-
-/** 
-* Fetches random pokémon from the pokédex.
-* @param {number=} [count=1] - The pokémons pokédex number
-* @param {boolean=} [allowDuplicates=false] - Whether to allow for duplicate pokémon or not
-*/
-export const getRandomPokemon = (count = 1, allowDuplicates = false) => {
-    if(count > 100) count = 100
-    const max = getPokemon().length
-    const pokemon = []
-    const rolls = []
-    for(let i = 0; i < count; i++){
-        /**
-        * @type {Pokemon}
-        */
-        let singlePokemon = {}
-        if(allowDuplicates){
-            singlePokemon = getPokemon(Math.floor((Math.random() * max) + 1))[0]
-        } else {
-            let roll = Math.floor((Math.random() * max) + 1)
-            while(rolls.indexOf(roll) > -1){
-                roll = Math.floor((Math.random() * max) + 1)
-            }
-            rolls.push(roll)
-            singlePokemon = getPokemon(roll)[0]
-        }
-        pokemon.push(singlePokemon)
-    }
-    return pokemon
-}
+ /**
+ * Fetches either a complete pokédex or a pokémon given the pokémon's pokédex id number.
+ * @param {number|null=} [number=null] - The pokémons pokédex number
+ */
+ export const getPokemon = (number = null) => {
+     if(!number) return pokedex
+     return pokedex.filter(pokemon => pokemon.number === number)
+ }
+ 
+ /** 
+ * Fetches random pokémon from the pokédex.
+ * @param {number=} [count=1] - The pokémons pokédex number
+ * @param {boolean=} [allowDuplicates=false] - Whether to allow for duplicate pokémon or not
+ */
+ export const getRandomPokemon = (count = 1, allowDuplicates = false) => {
+     if(count > 100) count = 100
+     const max = getPokemon().length //721
+     const pokemon = []
+     const rolls = []
+     for(let i = 0; i < count; i++){
+         /**
+         * @type {Pokemon}
+         */
+         let singlePokemon = {}
+         if(allowDuplicates){
+             singlePokemon = getPokemon(Math.floor((Math.random() * max) + 1))[0]
+         } else {
+             let roll = Math.floor((Math.random() * max) + 1) //random # between 1 & 721
+             while(rolls.indexOf(roll) > -1){
+                 roll = Math.floor((Math.random() * max) + 1) //random # between 1 & 721
+             }
+             rolls.push(roll)
+             singlePokemon = getPokemon(roll)[0]
+         }
+         pokemon.push(singlePokemon)
+     }
+     return pokemon
+ }
